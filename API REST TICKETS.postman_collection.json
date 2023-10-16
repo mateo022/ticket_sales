@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "c0ba3888-eecb-4982-bd00-6f044d1d8ef1",
+		"name": "API REST TICKETS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Venta_de_boletos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/venderBoleto/palco",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"venderBoleto",
+								"palco"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingreso_al_Concierto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/ingresarConcierto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ingresarConcierto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ordenar_asistentes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/ordenarAsistentes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ordenarAsistentes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

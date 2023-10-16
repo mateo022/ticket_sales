@@ -1,1 +1,32 @@
-<p>show-seats works!</p>
+<!-- Mostrar asientos disponibles -->
+<div *ngIf="asientosDisponibles">
+    <h2>Asientos Disponibles</h2>
+    <ul>
+      <li>Palco: {{ asientosDisponibles.palco }}</li>
+      <li>General: {{ asientosDisponibles.general }}</li>
+      <li>Preferencial: {{ asientosDisponibles.preferencial }}</li>
+    </ul>
+  </div>
+  
+  <!-- Mostrar asientos ocupados por tipo -->
+  <div *ngIf="palco.length > 0">
+    <h2>Asientos Palco</h2>
+    <ul>
+      <li *ngFor="let asiento of palco">{{ asiento.numeroBoleto }}</li>
+    </ul>
+  </div>
+  
+  <div *ngIf="general.length > 0">
+    <h2>Asientos General</h2>
+    <ul>
+      <li *ngFor="let asiento of general">{{ asiento.numeroBoleto }}</li>
+    </ul>
+  </div>
+  
+  <div *ngIf="preferencial.length > 0">
+    <h2>Asientos Preferencial</h2>
+    <ul>
+      <li *ngFor="let asiento of preferencial">{{ asiento.numeroBoleto }}</li>
+    </ul>
+  </div>
+  
