@@ -5,7 +5,6 @@ let boletosDisponibles = {
 };
 
 let colaVenta = [];
-let asistentes = [];
 let ingresoConcierto = [];
 let idAsientoTipo;
 let letraAsientoTipo;
@@ -13,9 +12,9 @@ let letraAsientoTipo;
 class ordenamiento {
     constructor() {
         this.asientosDisponibles = {
-            palco: 45,
-            general: 100,
-            preferencial: 200
+            palco: boletosDisponibles.palco,
+            general: boletosDisponibles.general,
+            preferencial: boletosDisponibles.preferencial
         };
         this.palco = [];
         this.general = [];
@@ -74,18 +73,21 @@ function venderBoleto(tipo, nombreAsistente) {
     }
 }
 
-function registrarAsistente(nombre) {
-    asistentes.push({ nombre });
-    return { success: true, mensaje: `Asistente registrado: ${nombre}` };
-}
+let asistentesIngresados = new Set();
 
 function ingresarConcierto(idBoleto) {
-    let buscarBoleto =  colaVenta.find(x => x.numeroBoleto == idBoleto)
+    let buscarBoleto =  colaVenta.find(x => x.numeroBoleto == idBoleto);
+
     if (buscarBoleto) {
-        ingresoConcierto.push(buscarBoleto)
-        return { success: true, mensaje: `Bienvenido al concierto, disfrutalo !` };
+        if (asistentesIngresados.has(idBoleto)) {
+            return { success: false, mensaje: `El asistente con boleto ${idBoleto} ya ha ingresado.` };
+        }
+
+        asistentesIngresados.add(idBoleto);
+        ingresoConcierto.push(buscarBoleto);
+        return { success: true, mensaje: `Bienvenido al concierto, disfrútalo !` };
     }
-    return { success: true, mensaje: `Por favor compre su boleto para poder ingresar` };
+    return { success: false, mensaje: `Por favor compre su boleto para poder ingresar.` };
 }
 
 function ordenarAsistentes() {
@@ -108,10 +110,9 @@ function ordenarAsistentes() {
         ordenamientoClass.addPreferencial(arrayPreferencial)
 
     }
-    // let asistentesOrdenados = [...colaVenta].sort((a, b) => a.numeroAsiento - b.numeroAsiento);
     ingresoConcierto.shift();
     return ordenamientoClass;
 }
 
 
-module.exports = { venderBoleto, colaVenta, boletosDisponibles, asistentes, registrarAsistente, ingresarConcierto, ordenarAsistentes };
+module.exports = { venderBoleto, colaVenta, boletosDisponibles, ingresarConcierto, ordenarAsistentes };

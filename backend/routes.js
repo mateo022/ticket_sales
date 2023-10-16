@@ -8,12 +8,6 @@ router.post('/venderBoleto/:tipo', (req, res) => {
   res.json(resultado);
 });
 
-router.post('/registrarAsistente', (req, res) => {
-  const nombre = req.body.nombre;
-  const resultado = controllers.registrarAsistente(nombre);
-  res.json(resultado);
-});
-
 router.post('/ingresarConcierto/:idBoleto', (req, res) => {
   const idBoleto = req.params.idBoleto;
   const resultado = controllers.ingresarConcierto(idBoleto);
